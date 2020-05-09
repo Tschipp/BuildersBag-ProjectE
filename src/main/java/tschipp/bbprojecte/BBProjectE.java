@@ -24,7 +24,7 @@ public class BBProjectE
 	public static final Logger LOGGER = LogManager.getFormatterLogger(MODID.toUpperCase());
 	public static final String CERTIFICATE = "fd21553434f4905f2f73ea7838147ac4ea07bd88";
 
-	private static final String curseSlug = "buildersbag-projecte";
+	private static final String curseSlug = "builders-bag-projecte-addon";
 	
 	public static boolean FINGERPRINT_VIOLATED = false;
 
