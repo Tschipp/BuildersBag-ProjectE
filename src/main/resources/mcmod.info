@@ -1,0 +1,15 @@
+[
+{
+  "modid": "bbprojecte",
+  "name": "Builder's Bag - ProjectE Addon",
+  "description": "ProjectE Addon for Builder's Bag",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Tschipp"],
+  "logoFile": "assets/bbprojecte/textures/logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
