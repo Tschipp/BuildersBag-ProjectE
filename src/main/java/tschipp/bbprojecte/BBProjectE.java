@@ -20,7 +20,7 @@ public class BBProjectE
 	public static final String NAME = "Builder's Bag - ProjectE Addon";
 	public static final String ACCEPTED_VERSIONS = "[1.12.2,1.13)";
 	//It's important that we register our modules BEFORE Builder's Bag.
-	public static final String DEPENDENCIES = "required-after:forge@[13.20.1.2386,);required-after:projecte;required-before:buildersbag@[1.1.0.8,);";
+	public static final String DEPENDENCIES = "required-after:forge@[13.20.1.2386,);required-after:projecte;required-before:buildersbag@[1.1.1.11,);";
 	public static final Logger LOGGER = LogManager.getFormatterLogger(MODID.toUpperCase());
 	public static final String CERTIFICATE = "fd21553434f4905f2f73ea7838147ac4ea07bd88";
 
