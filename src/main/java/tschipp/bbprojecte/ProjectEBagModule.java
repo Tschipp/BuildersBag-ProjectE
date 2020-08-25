@@ -31,28 +31,6 @@ public class ProjectEBagModule extends AbstractBagModule {
 	}
 
 	@Override
-	public ItemStack createStack(ItemStack stack, IBagCap bag, EntityPlayer player) {
-
-		ItemStack storedItem = handler.getStackInSlot(0);
-		if (storedItem.isEmpty())
-			return ItemStack.EMPTY;
-
-		long emcValue = EMCHelper.getEmcValue(stack);
-		if (emcValue == 0)
-			return ItemStack.EMPTY;
-
-		IItemEmc emcHolder = (IItemEmc) storedItem.getItem();
-		long storedEmc = emcHolder.getStoredEmc(storedItem);
-
-		if (emcValue > storedEmc)
-			return ItemStack.EMPTY;
-
-		emcHolder.extractEmc(storedItem, emcValue);
-
-		return stack.copy();
-	}
-
-	@Override
 	public NBTTagCompound serializeNBT() {
 		NBTTagCompound tag = super.serializeNBT();
 		tag.setTag("Inventory", handler.serializeNBT());
@@ -83,5 +61,35 @@ public class ProjectEBagModule extends AbstractBagModule {
 	@Override
 	public ModulePriority getPriority() {
 		return ModulePriority.HIGHEST;
+	}
+
+	@Override
+	public NonNullList<ItemStack> createStackWithCount(ItemStack stack, int count, IBagCap bag, EntityPlayer player) {
+
+		NonNullList<ItemStack> created = NonNullList.create();
+		ItemStack storedItem = handler.getStackInSlot(0);
+		if (storedItem.isEmpty())
+			return created;
+
+		long emcValue = EMCHelper.getEmcValue(stack);
+		if (emcValue == 0)
+			return created;
+
+		IItemEmc emcHolder = (IItemEmc) storedItem.getItem();
+		long storedEmc = emcHolder.getStoredEmc(storedItem);
+
+		if (emcValue > storedEmc)
+			return created;
+
+		for(int i = 0; i < count; i++)
+		{
+			emcHolder.extractEmc(storedItem, emcValue);
+			created.add(stack.copy());
+			storedEmc = emcHolder.getStoredEmc(storedItem);
+			if(emcValue > storedEmc)
+				break;
+		}
+
+		return created;
 	}
 }
